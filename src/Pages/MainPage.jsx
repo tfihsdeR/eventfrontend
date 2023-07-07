@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageSlider from "../Components/JS/ImageSlider";
+import ImageSlider from "../Components/ImageSlider";
 import { Link } from 'react-router-dom';
 import Theatres from './Theatres';
 

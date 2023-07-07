@@ -90,7 +90,7 @@ function Theatres() {
             height: "100%",
             borderRadius: "10px",
             backgroundPosition: "center",
-            backgroundSize: "contain",
+            backgroundSize: "cover",
             backgroundImage: `url(${imagesList.find(i => i.eventId == id).imageUrl})`,
         }
     }

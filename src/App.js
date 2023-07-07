@@ -43,7 +43,7 @@ function App() {
 
 	const navigationStyles = {
 		display: "inline-flex",
-		alignItems: "center"
+		alignItems: "center",
 	}
 
 	const searchBarStyles = {
