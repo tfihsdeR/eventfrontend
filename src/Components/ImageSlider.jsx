@@ -25,7 +25,7 @@ const ImageSlider = ({ slides }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             GoToNext();
-        }, 2000);
+        }, 3500);
 
         return () => {
             clearInterval(interval);
@@ -79,6 +79,17 @@ const ImageSlider = ({ slides }) => {
         cursor: "pointer",
         fontSize: "20px"
     };
+
+    const nameStyles = {
+        position: "absolute",
+        top: "80%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        fontSize: "25px",
+        color: "white",
+        // textDecoration: "underline"
+    };
+
     //#endregion
 
     return (
@@ -98,6 +109,10 @@ const ImageSlider = ({ slides }) => {
                     ))
                 }
             </div>
+            <div style={nameStyles}>
+                {slides[currentImageIndex] == undefined ? null : slides[currentImageIndex].title}
+            </div>
+
         </div>
     )
 }

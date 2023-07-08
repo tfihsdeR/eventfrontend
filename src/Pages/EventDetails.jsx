@@ -7,7 +7,7 @@ function EventDetails({ images }) {
     const { id } = useParams();
     const [allImages, setAllImages] = useState([]);
     const [eventDetails, setEventDetails] = useState([]);
-
+    const [venue, setVenue] = useState([]);
 
     //#region STYLES
     const sliderContainerStyles = {
@@ -27,8 +27,6 @@ function EventDetails({ images }) {
     const dateInfoHeadStyles = {
         fontSize: "23px"
     };
-
-
     //#endregion
 
     useEffect(() => {
@@ -42,6 +40,10 @@ function EventDetails({ images }) {
         fetch(`https://localhost:7191/api/Event/${id}`)
             .then(response => response.json())
             .then(data => setEventDetails(data));
+
+        fetch(`https://localhost:7191/api/Venue/venues/${id}`)
+            .then(response => response.json())
+            .then(data => setVenue(data));
     }, [])
 
 
@@ -69,6 +71,17 @@ function EventDetails({ images }) {
                         <div><span style={dateInfoHeadStyles}>End Date</span></div>
                         <div><span>{eventDetails.length != 0 ? eventDetails.endDate.slice(0, 10) : null}</span></div>
                     </div>
+                </div>
+                <div style={{ marginTop: "50px" }}>
+                    <iframe
+                        src={venue.length != 0 ? venue[0].googleMapSource : null}
+                        width={600}
+                        height={450}
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                    />
                 </div>
             </div>
         </div>

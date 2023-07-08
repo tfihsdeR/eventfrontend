@@ -8,10 +8,10 @@ function MainPage() {
 	//#region PROPERTIES
 	const slides = [
 		{ imageUrl: "https://ca-times.brightspotcdn.com/dims4/default/d5550b8/2147483647/strip/false/crop/1416x796+0+0/resize/1416x796!/quality/80/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fa7%2Fc6%2F4502753bd827515c7134951ba60e%2Fsd-1503976985-tw487nv9sd-snap-image", title: "Hamlet" },
-		{ imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqMSZhWnMTWvEQDWUVzC9_npWRE9WoOWbj3w&usqp=CAU", title: "Hamlet" },
-		{ imageUrl: "https://dckozmos.com/wp-content/uploads/2021/07/william-shakespeare-hamlet-tiradi-770x441.png", title: "Hamlet" },
-		{ imageUrl: "https://embed-ssl.wistia.com/deliveries/4e4ee259b179f4381779b10cbf35386d9bcefba6.webp?image_crop_resized=820x461", title: "Hamlet" },
-		{ imageUrl: "https://www.theoldglobe.org/link/beaa065ced414a8a8760da8c048cfbd8.aspx?id=30870", title: "Hamlet" }
+		{ imageUrl: "https://www.comedie-francaise.fr/www/comedie/media/image/spectacle/coverfaust1718.jpg", title: "Faust" },
+		{ imageUrl: "https://www.kultursanatharitasi.com/wp-content/uploads/2015/04/phantom-of-the-opera.jpg", title: "The Phantom of the Opera" },
+		{ imageUrl: "https://cdn2.rsc.org.uk/sitefinity/images/productions/productions-2009-and-before/Romeo-and-Juliet/romeo-and-juliet_-2000_-love-at-first-sight_2000_photo-by-robert-workman-_c_-rsc_103542.tmb-img-912.jpg?sfvrsn=bbb03a21_1", title: "Romeo and Juliet" },
+		{ imageUrl: "https://cdn.londonandpartners.com/asset/les-miserables-the-musical-at-the-sondheim-theatre_les-miserables-image-courtesy-of-cameron-mackintosh_a336a558488e8570eb52e027042a4902.jpg", title: "Les Misérables at the Sondheim" }
 	];
 
 	const eventMainImages = [

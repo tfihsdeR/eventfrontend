@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import MainPage from './Pages/MainPage';
 import AboutUs from './Pages/AboutUs';
-import Events from './Pages/Events';
 import Theatres from './Pages/Theatres';
 import ArtGaleries from "./Pages/ArtGaleries"
 import Concerts from "./Pages/Concerts"
@@ -16,8 +15,9 @@ function App() {
 
 	//#region STYLES
 	const mainStyles = {
-		marginTop: "70px",
-		minHeight: "90vh"
+		marginTop: "100px",
+		minHeight: "90vh",
+		minWidth: "1000px"
 	}
 
 	const footerStyles = {
@@ -25,7 +25,8 @@ function App() {
 		display: "flex",
 		flexDirection: "column",
 		backgroundColor: "black",
-		color: "white"
+		color: "white",
+		width: "100%"
 	}
 
 	const navigationContainerStyles = {
@@ -37,44 +38,63 @@ function App() {
 		backgroundColor: "orange",
 		justifyContent: "center",
 		display: "flex",
-		height: "50px",
-		maxHeight: "200"
+		minHeight: "60px"
 	}
 
 	const navigationStyles = {
-		display: "inline-flex",
-		alignItems: "center",
+		display: "flex",
+		justifyContent: "space-between",
+		alignItems: "center"
 	}
+
 
 	const searchBarStyles = {
 		display: "inline-flex",
 		justifyContent: "flex-end",
-		alignItems: "center"
+		alignItems: "center",
+		position: "absolute",
+		transform: "translate(50%, 50%)",
+		marginLeft: "800px"
+	};
+
+	const appJsStyles = {
+		backgroundImage: "url(https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png)",
+		backgroundSize: "cover",
+		backgroundPosition: "center",
+		justifyContent: 'center',
+		alignItems: "center",
+		display: "flex",
+		flexDirection: "column",
 	}
 	//#endregion
 
+	const SearchEvent = (event) => {
+		if (event.key === "Enter") {
+			handleSearch();
+		}
+	}
+
+	const handleSearch = () => {
+		console.log("Search value:", searchBarValue);
+	};
+
 	return (
-		<div className="App" style={{ backgroundImage: "url(https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png)", backgroundSize: "contain", backgroundPosition: "center", }}>
+		<div className="App" style={appJsStyles}>
 			<Router>
 				<header className="App-header">
 					<div style={navigationContainerStyles}>
 						<div id='navigation' style={navigationStyles}>
 							<nav>
 								<div className="navigationLinks" >
-									<Link to="/mainPage" style={{ marginLeft: "380px", marginRight: "50px" }}>Main Page</Link>
-									{/* <Link to="/events" style={{ marginRight: "50px", marginLeft: "50px" }}>Events</Link> */}
-									<Link to="/aboutUs" style={{ marginRight: "200px" }}>About Us</Link>
+									<Link to="/mainPage" style={{ marginRight: "50px" }}>Main Page</Link>
+									<Link to="/aboutUs" >About Us</Link>
 								</div>
 							</nav>
 						</div>
 
-						<div>
-							<Link to="/theatres"></Link>
-						</div>
-
 						<div style={searchBarStyles}>
-							<input style={{ height: "25px" }} placeholder='Search' type='text' onChange={s => setSearchBarValue(s.target.value)} />
-							<i className="fas fa-search" style={{ fontSize: "15px", marginLeft: "5px" }}></i>
+							<input style={{ height: "25px" }} placeholder='Search' type='text' onChange={s => setSearchBarValue(s.target.value)} onKeyPress={SearchEvent} />
+							<i className="fas fa-search" style={{ fontSize: "15px", marginLeft: "5px" }} onClick={handleSearch}></i>
 						</div>
 					</div>
 				</header>
@@ -84,7 +104,6 @@ function App() {
 						<Routes>
 							<Route path='/' element={<MainPage />} />
 							<Route path='/mainPage' element={<MainPage />} />
-							{/* <Route path='/events' element={<Events />} /> */}
 							<Route path='/aboutUs' element={<AboutUs />} />
 							<Route path="/theatres" element={<Theatres />} />
 							<Route path="/artGaleries" element={<ArtGaleries />} />
@@ -101,7 +120,7 @@ function App() {
 					<span>Created By Erdinç Atay</span>
 				</div>
 			</footer>
-		</div>
+		</div >
 	);
 }
 

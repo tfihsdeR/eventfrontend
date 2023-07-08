@@ -46,7 +46,7 @@ function Concerts() {
                 {newDivS.map(d => (
                     <div style={eventsImagesStyles}>
                         {d.map(innerconcerts => (
-                            <div style={imageContainerStyles}>
+                            <div id="image" style={imageContainerStyles}>
                                 <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerconcerts.id}`)}>
                                     <div style={theatreImageStyles(allImages, innerconcerts.id)}></div>
                                     <div style={imageTextStyles}><span>{innerconcerts.name}</span></div>
@@ -64,7 +64,7 @@ function Concerts() {
     const eventsImagesStyles = {
         display: "flex",
         justifyContent: "space-around",
-        marginBottom: "80px"
+        marginBottom: "80px",
     };
 
     const imageContainerStyles = {
