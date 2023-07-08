@@ -50,7 +50,7 @@ function EventDetails({ images }) {
     return (
         <div style={{ marginTop: "100px" }}>
             <div>
-                <h1>{eventDetails.name}</h1>
+                <h1 style={{ fontFamily: "Acakadut", fontSize: "50px" }}>{eventDetails.name}</h1>
             </div>
 
             <div >

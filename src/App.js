@@ -1,17 +1,25 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import MainPage from './Pages/MainPage';
 import AboutUs from './Pages/AboutUs';
 import Theatres from './Pages/Theatres';
 import ArtGaleries from "./Pages/ArtGaleries"
 import Concerts from "./Pages/Concerts"
 import SearchResults from './Pages/SearchResults'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import EventDetails from './Pages/EventDetails';
+import "./Fonts/Dirtyboy-BxYl.ttf"
+import "./Fonts/DarlingtonDemo-z8xjG.ttf"
+import "./Fonts/Silverstone-PKzn7.otf"
+import "./Fonts/Abrushow-ALwDD.ttf"
+import "./Fonts/NightLoverDemo-rgJRp.ttf"
+import "./Fonts/Acakadut-GOZ5A.ttf"
 
 function App() {
 
 	const [searchBarValue, setSearchBarValue] = useState("");
+	const navigate = useNavigate();
+	const [searchedEvents, setSearchedEvents] = useState([]);
 
 	//#region STYLES
 	const mainStyles = {
@@ -44,7 +52,10 @@ function App() {
 	const navigationStyles = {
 		display: "flex",
 		justifyContent: "space-between",
-		alignItems: "center"
+		alignItems: "center",
+		fontFamily: "NightLoverDemo",
+		fontSize: "40px",
+		color: "dark"
 	}
 
 
@@ -53,8 +64,8 @@ function App() {
 		justifyContent: "flex-end",
 		alignItems: "center",
 		position: "absolute",
-		transform: "translate(50%, 50%)",
-		marginLeft: "800px"
+		top: "50%",
+		transform: "translate(250%, -50%)",
 	};
 
 	const appJsStyles = {
@@ -70,54 +81,64 @@ function App() {
 
 	const SearchEvent = (event) => {
 		if (event.key === "Enter") {
+			event.target.value = "";
 			handleSearch();
 		}
 	}
 
 	const handleSearch = () => {
-		console.log("Search value:", searchBarValue);
+		fetch(`https://localhost:7191/api/Event/events/keyword?keyword=${searchBarValue}`)
+			.then(response => {
+				if (response.ok) {
+					return response.json()
+				} else {
+					return null;
+				}
+			})
+			.then(data => setSearchedEvents(data))
+			.then(
+				navigate(`searchResults/${searchBarValue}`)
+			)
 	};
 
 	return (
 		<div className="App" style={appJsStyles}>
-			<Router>
-				<header className="App-header">
-					<div style={navigationContainerStyles}>
-						<div id='navigation' style={navigationStyles}>
-							<nav>
-								<div className="navigationLinks" >
-									<Link to="/mainPage" style={{ marginRight: "50px" }}>Main Page</Link>
-									<Link to="/aboutUs" >About Us</Link>
-								</div>
-							</nav>
-						</div>
-
-						<div style={searchBarStyles}>
-							<input style={{ height: "25px" }} placeholder='Search' type='text' onChange={s => setSearchBarValue(s.target.value)} onKeyPress={SearchEvent} />
-							<i className="fas fa-search" style={{ fontSize: "15px", marginLeft: "5px" }} onClick={handleSearch}></i>
-						</div>
+			<header className="App-header">
+				<div style={navigationContainerStyles}>
+					<div id='navigation' style={navigationStyles}>
+						<nav>
+							<div className="navigationLinks" >
+								<Link to="/mainPage" style={{ marginRight: "50px", color: "black" }}>Main Page</Link>
+								<Link to="/aboutUs" style={{ color: "black" }}>About Us</Link>
+							</div>
+						</nav>
 					</div>
-				</header>
 
-				<main id='main' style={mainStyles}>
-					<div id='routes'>
-						<Routes>
-							<Route path='/' element={<MainPage />} />
-							<Route path='/mainPage' element={<MainPage />} />
-							<Route path='/aboutUs' element={<AboutUs />} />
-							<Route path="/theatres" element={<Theatres />} />
-							<Route path="/artGaleries" element={<ArtGaleries />} />
-							<Route path="/concerts" element={<Concerts />} />
-							<Route path="/searchResults" element={<SearchResults />} />
-							<Route path="/eventDetails/:id" element={<EventDetails />} />
-						</Routes>
+					<div style={searchBarStyles}>
+						<input style={{ height: "25px" }} placeholder='Search' type='text' onChange={s => setSearchBarValue(s.target.value)} onKeyPress={SearchEvent} />
+						<i className="fas fa-search" style={{ fontSize: "15px", marginLeft: "5px" }} onClick={handleSearch}></i>
 					</div>
-				</main>
-			</Router>
+				</div >
+			</header >
+
+			<main id='main' style={mainStyles}>
+				<div id='routes'>
+					<Routes>
+						<Route path='/' element={<MainPage />} />
+						<Route path='/mainPage' element={<MainPage />} />
+						<Route path='/aboutUs' element={<AboutUs />} />
+						<Route path="/theatres" element={<Theatres />} />
+						<Route path="/artGaleries" element={<ArtGaleries />} />
+						<Route path="/concerts" element={<Concerts />} />
+						<Route path="/searchResults/:keyword" element={<SearchResults _searchedEvents={searchedEvents} />} />
+						<Route path="/eventDetails/:id" element={<EventDetails />} />
+					</Routes>
+				</div>
+			</main>
 
 			<footer style={footerStyles}>
 				<div style={{ display: "flex", justifyContent: "center" }}>
-					<span>Created By Erdinç Atay</span>
+					<span>Created By <span style={{ fontFamily: "Silverstone", fontSize: "20px" }}>Erdinç Atay</span></span>
 				</div>
 			</footer>
 		</div >

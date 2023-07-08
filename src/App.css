@@ -47,5 +47,36 @@
 }
 
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "DirtyBoys";
+    src: local("DirtyBoys"), url("./Fonts/Dirtyboy-BxYl.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DarlingtonDemo";
+    src: local("DarlingtonDemo"), url("./Fonts/DarlingtonDemo-z8xjG.ttf") format("truetype");
+}
+
+@font-face {
+
+    font-family: "Silverstone";
+    src: local("Silverstone"), url("./Fonts/Silverstone-PKzn7.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "NightLoverDemo";
+    src: local("NightLoverDemo"), url("./Fonts/NightLoverDemo-rgJRp.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "NightLoverDemo";
+    src: local("NightLoverDemo"), url("./Fonts/Abrushow-ALwDD.ttf") format("truetype")
+}
+
+@font-face {
+    font-family: "Acakadut";
+    src: local("Acakadut"), url("./Fonts/Acakadut-GOZ5A.ttf") format("truetype")
 }

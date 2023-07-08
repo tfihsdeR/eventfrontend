@@ -85,8 +85,9 @@ const ImageSlider = ({ slides }) => {
         top: "80%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        fontSize: "25px",
+        fontSize: "30px",
         color: "white",
+        fontFamily: "Acakadut"
         // textDecoration: "underline"
     };
 

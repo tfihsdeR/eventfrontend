@@ -1,8 +1,6 @@
 import React from 'react'
 import ImageSlider from "../Components/ImageSlider";
 import { Link } from 'react-router-dom';
-import Theatres from './Theatres';
-
 function MainPage() {
 
 	//#region PROPERTIES
@@ -25,8 +23,9 @@ function MainPage() {
 	const eventHeaderStyles = {
 		display: "flex",
 		justifyContent: "center",
-		fontSize: "30px",
-		marginBottom: "20px"
+		fontSize: "50px",
+		marginBottom: "20px",
+		fontFamily: "DirtyBoys",
 	};
 
 	const eventsContainerStyles = {
@@ -92,6 +91,7 @@ function MainPage() {
 		position: "absolute",
 		fontSize: "50px",
 		color: "white",
+		fontFamily: "Acakadut"
 	};
 	//#endregion
 

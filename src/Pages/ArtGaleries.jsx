@@ -97,13 +97,14 @@ function ArtGaleries() {
         position: "absolute",
         fontSize: "50px",
         color: "white",
+        fontFamily: "Acakadut"
     };
     //#endregion
 
     return (
         <div>
             <div>
-                <h1>ART GALERIES</h1>
+                <h1 style={{ fontFamily: "DirtyBoys", fontSize: "50px" }}>ART GALERIES</h1>
             </div>
 
             <div>

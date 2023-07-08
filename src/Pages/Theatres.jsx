@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 function Theatres() {
 
@@ -99,13 +98,14 @@ function Theatres() {
         position: "absolute",
         fontSize: "50px",
         color: "white",
+        fontFamily: "Acakadut"
     };
     //#endregion
 
     return (
         <div>
             <div>
-                <h1>THEATRES</h1>
+                <h1 style={{ fontFamily: "DirtyBoys", fontSize: "50px" }}>THEATRES</h1>
             </div>
 
             <div>
