@@ -42,6 +42,9 @@ function MainPage() {
 	const imageContainerStyles = {
 		width: "400px",
 		height: "200px",
+		marginLeft: "20px",
+		marginRight: "20px",
+		marginBottom: "20px"
 	};
 
 	const linkStyles = {
@@ -67,6 +70,7 @@ function MainPage() {
 	const eventsImagesStyles = {
 		display: "flex",
 		justifyContent: "space-around",
+		flexWrap: "wrap",
 	};
 
 	const concertImageStyles = {
@@ -96,8 +100,8 @@ function MainPage() {
 	//#endregion
 
 	return (
-		<div>
-			<div >
+		<div >
+			<div>
 				<div style={sliderContainerStyles}>
 					<ImageSlider slides={slides} />
 				</div>
@@ -116,7 +120,7 @@ function MainPage() {
 						</Link>
 					</div>
 
-					<div style={{ ...imageContainerStyles, marginLeft: "20px", marginRight: "20px" }}>
+					<div style={imageContainerStyles}>
 						<Link to="/concerts" style={linkStyles}>
 							<div style={concertImageStyles}></div>
 							<div style={imageTextStyles}><span>Concerts</span></div>

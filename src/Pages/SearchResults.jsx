@@ -1,36 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-function SearchResults({ _searchedEvents, _allImages }) {
+function SearchResults() {
 
     const { keyword } = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log("_searchedEvents: ", _searchedEvents)
-        console.log("_allImages: ", _allImages)
-    }, [_searchedEvents, _allImages])
+    const [searchedEvents, setSearchedEvents] = useState(null);
+    const [allImages, setAllImages] = useState(null);
 
+    useEffect(() => {
+        fetch(`https://localhost:7191/api/Event/events/keyword?keyword=${keyword}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                }
+            })
+            .then(data => {
+                setSearchedEvents(data);
+            })
+            .catch(error => {
+                console.error(error);
+                setSearchedEvents([]);
+            });
+
+        fetch(`https://localhost:7191/api/Image/Image/${keyword}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                }
+            })
+            .then(data => {
+                setAllImages(data);
+            })
+            .catch(error => {
+                console.error(error);
+                setAllImages([]);
+            });
+    }, [keyword]);
 
     //#region STYLES
     const errorTextStyles = {
         fontFamily: "Acakadut",
         fontSize: "50px"
-    };
-
-    const frameStyles = {
-        border: "1px  solid black"
-    };
-
-    const searchExplainStyles = {
-        fontFamily: "Acakadut",
-        fontSize: "25px",
-        marginBottom: "30px"
-    };
-
-    const tableContainerStyles = {
-        display: "flex",
-        justifyContent: "center"
     };
 
     const imageContainerStyles = {
@@ -39,7 +53,8 @@ function SearchResults({ _searchedEvents, _allImages }) {
         display: "inline-flex",
 
         marginLeft: "20px",
-        marginRight: "20px"
+        marginRight: "20px",
+        marginBottom: "20px"
     };
 
     const linkStyles = {
@@ -80,12 +95,12 @@ function SearchResults({ _searchedEvents, _allImages }) {
     return (
         <div>
             {
-                _searchedEvents != null && _allImages != null ? (
+                searchedEvents != null && allImages != null ? (
                     <div style={searchedItemsContainer}>
-                        {_searchedEvents.map(e => (
-                            <div style={imageContainerStyles}>
+                        {searchedEvents.map((e, index) => (
+                            <div key={index} style={imageContainerStyles}>
                                 <div style={linkStyles} onClick={() => navigate(`/eventDetails/${e.id}`)}>
-                                    <div style={theatreImageStyles(_allImages, e.id)}></div>
+                                    <div style={theatreImageStyles(allImages, e.id)}></div>
                                     <div style={imageTextStyles}><span>{e.name}</span></div>
                                 </div>
                             </div>

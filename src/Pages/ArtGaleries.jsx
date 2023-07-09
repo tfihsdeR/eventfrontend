@@ -43,16 +43,14 @@ function ArtGaleries() {
         return (
             <div>
                 {newDivS.map(d => (
-                    <div style={eventsImagesStyles}>
-                        {d.map(innerartGaleries => (
-                            <div style={imageContainerStyles}>
-                                <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerartGaleries.id}`)}>
-                                    <div style={theatreImageStyles(allImages, innerartGaleries.id)}></div>
-                                    <div style={imageTextStyles}><span>{innerartGaleries.name}</span></div>
-                                </div>
+                    d.map(innerartGaleries => (
+                        <div style={imageContainerStyles}>
+                            <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerartGaleries.id}`)}>
+                                <div style={theatreImageStyles(allImages, innerartGaleries.id)}></div>
+                                <div style={imageTextStyles}><span>{innerartGaleries.name}</span></div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))
                 ))}
             </div>
         );
@@ -69,6 +67,12 @@ function ArtGaleries() {
     const imageContainerStyles = {
         width: "400px",
         height: "200px",
+        display: "inline-flex",
+
+        marginLeft: "20px",
+        marginRight: "20px",
+        marginBottom: "20px",
+        flexWrap: "wrap"
     };
 
     const linkStyles = {

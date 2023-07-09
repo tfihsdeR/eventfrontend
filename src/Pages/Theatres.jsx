@@ -45,16 +45,14 @@ function Theatres() {
         return (
             <div>
                 {newDivS.map(d => (
-                    <div style={eventsImagesStyles}>
-                        {d.map(innerTheatre => (
-                            <div style={imageContainerStyles}>
-                                <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerTheatre.id}`)}>
-                                    <div style={theatreImageStyles(allImages, innerTheatre.id)}></div>
-                                    <div style={imageTextStyles}><span>{innerTheatre.name}</span></div>
-                                </div>
+                    d.map(innerTheatre => (
+                        <div style={imageContainerStyles}>
+                            <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerTheatre.id}`)}>
+                                <div style={theatreImageStyles(allImages, innerTheatre.id)}></div>
+                                <div style={imageTextStyles}><span>{innerTheatre.name}</span></div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))
                 ))}
             </div>
         );
@@ -62,14 +60,15 @@ function Theatres() {
     //#endregion 
 
     //#region STYLES
-    const eventsImagesStyles = {
-        display: "flex",
-        justifyContent: "space-around",
-    };
-
     const imageContainerStyles = {
         width: "400px",
         height: "200px",
+        display: "inline-flex",
+
+        marginLeft: "20px",
+        marginRight: "20px",
+        marginBottom: "20px",
+        flexWrap: "wrap"
     };
 
     const linkStyles = {
@@ -103,12 +102,12 @@ function Theatres() {
     //#endregion
 
     return (
-        <div>
+        <div style={{ display: "flex", flexDirection: "column", flexWrap: "wrap", alignContent: "center" }}>
             <div>
-                <h1 style={{ fontFamily: "DirtyBoys", fontSize: "50px" }}>THEATRES</h1>
+                <h1 style={{ fontFamily: "DirtyBoys", fontSize: "70px" }}>THEATRES</h1>
             </div>
 
-            <div>
+            <div style={{ width: "100%" }}>
                 {
                     allImages.length != 0 ? ShowAllTheatres() : null
                 }

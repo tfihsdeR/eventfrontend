@@ -46,16 +46,14 @@ function Concerts() {
         return (
             <div>
                 {newDivS.map(d => (
-                    <div style={eventsImagesStyles}>
-                        {d.map(innerconcerts => (
-                            <div id="image" style={imageContainerStyles}>
-                                <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerconcerts.id}`)}>
-                                    <div style={theatreImageStyles(allImages, innerconcerts.id)}></div>
-                                    <div style={imageTextStyles}><span>{innerconcerts.name}</span></div>
-                                </div>
+                    d.map(innerconcerts => (
+                        <div id="image" style={imageContainerStyles}>
+                            <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerconcerts.id}`)}>
+                                <div style={theatreImageStyles(allImages, innerconcerts.id)}></div>
+                                <div style={imageTextStyles}><span>{innerconcerts.name}</span></div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))
                 ))}
             </div>
         );
@@ -72,6 +70,12 @@ function Concerts() {
     const imageContainerStyles = {
         width: "400px",
         height: "200px",
+        display: "inline-flex",
+
+        marginLeft: "20px",
+        marginRight: "20px",
+        marginBottom: "20px",
+        flexWrap: "wrap"
     };
 
     const linkStyles = {
@@ -107,7 +111,7 @@ function Concerts() {
     return (
         <div>
             <div>
-                <h1 style={{ fontFamily: "DirtyBoys", fontSize: "50px" }}>CONCERTS</h1>
+                <h1 style={{ fontFamily: "DirtyBoys", fontSize: "70px" }}>CONCERTS</h1>
             </div>
 
             <div>
