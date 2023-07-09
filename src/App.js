@@ -20,12 +20,12 @@ function App() {
 	const [searchBarValue, setSearchBarValue] = useState("");
 	const navigate = useNavigate();
 	const [searchedEvents, setSearchedEvents] = useState([]);
+	const [allImages, setAllImages] = useState([]);
 
 	//#region STYLES
 	const mainStyles = {
 		marginTop: "100px",
 		minHeight: "90vh",
-		minWidth: "1000px"
 	}
 
 	const footerStyles = {
@@ -86,19 +86,26 @@ function App() {
 		}
 	}
 
-	const handleSearch = () => {
-		fetch(`https://localhost:7191/api/Event/events/keyword?keyword=${searchBarValue}`)
+	const handleSearch = async () => {
+		await fetch(`https://localhost:7191/api/Event/events/keyword?keyword=${searchBarValue}`)
 			.then(response => {
 				if (response.ok) {
-					return response.json()
+					return response.json();
 				} else {
 					return null;
 				}
 			})
 			.then(data => setSearchedEvents(data))
-			.then(
-				navigate(`searchResults/${searchBarValue}`)
-			)
+		await fetch(`https://localhost:7191/api/Image/Image/${searchBarValue}`)
+			.then(response => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					return null;
+				}
+			})
+			.then(data => setAllImages(data));
+		navigate(`searchResults/${searchBarValue}`);
 	};
 
 	return (
@@ -130,7 +137,7 @@ function App() {
 						<Route path="/theatres" element={<Theatres />} />
 						<Route path="/artGaleries" element={<ArtGaleries />} />
 						<Route path="/concerts" element={<Concerts />} />
-						<Route path="/searchResults/:keyword" element={<SearchResults _searchedEvents={searchedEvents} />} />
+						<Route path="/searchResults/:keyword" element={<SearchResults _searchedEvents={searchedEvents} _allImages={allImages} />} />
 						<Route path="/eventDetails/:id" element={<EventDetails />} />
 					</Routes>
 				</div>

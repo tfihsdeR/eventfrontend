@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-function SearchResults({ _searchedEvents }) {
+function SearchResults({ _searchedEvents, _allImages }) {
 
     const { keyword } = useParams();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log("_searchedEvents: ", _searchedEvents)
+        console.log("_allImages: ", _allImages)
+    }, [_searchedEvents, _allImages])
+
 
     //#region STYLES
     const errorTextStyles = {
@@ -26,59 +32,72 @@ function SearchResults({ _searchedEvents }) {
         display: "flex",
         justifyContent: "center"
     };
-    //#endregion
 
-    const ResultOfTheSearch = () => {
-        if (_searchedEvents != null) {
-            return (
-                <div>
-                    <div style={searchExplainStyles}>
-                        <span>Click to the Event Name to navigate the event details!</span>
-                    </div>
-                    <div style={tableContainerStyles}>
-                        <table style={frameStyles}>
-                            <thead style={frameStyles}>
-                                <tr style={frameStyles}>
-                                    <th style={frameStyles}>Event</th>
-                                    <th style={frameStyles}>Orginazor</th>
-                                    <th style={frameStyles}>Start Date</th>
-                                    <th style={frameStyles}>End Date</th>
-                                </tr>
-                            </thead>
-                            <tbody style={frameStyles}>
-                                {
-                                    _searchedEvents.map((e, index) => {
-                                        return (
-                                            <tr key={index} style={frameStyles}>
-                                                <td style={{ ...frameStyles, cursor: "pointer" }} onClick={() => navigate(`/eventDetails/${e.id}`)}>{e.name}</td>
-                                                <td style={frameStyles}>{e.organizer}</td>
-                                                <td style={frameStyles}>{e.startDate.slice(0, 10)}</td>
-                                                <td style={frameStyles}>{e.endDate.slice(0, 10)}</td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            )
-        } else {
-            return (
-                <span style={errorTextStyles}>There is no event to display!</span>
-            );
+    const imageContainerStyles = {
+        width: "400px",
+        height: "200px",
+        display: "inline-flex",
+
+        marginLeft: "20px",
+        marginRight: "20px"
+    };
+
+    const linkStyles = {
+        display: "flex",
+        width: "400px",
+        height: "200px",
+        margin: "0 auto",
+        position: "relative",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer"
+    };
+
+    const theatreImageStyles = (imagesList, id) => {
+        return {
+            width: "100%",
+            height: "100%",
+            borderRadius: "10px",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundImage: `url(${imagesList.find(i => i.eventId == id).imageUrl})`,
         }
-    }
+    };
+
+    const imageTextStyles = {
+        position: "absolute",
+        fontSize: "50px",
+        color: "white",
+        fontFamily: "Acakadut"
+    };
+
+    const searchedItemsContainer = {
+        justifyContent: "space-around",
+        flexWrap: "wrap",
+    };
+    //#endregion
 
     return (
         <div>
-            <div style={{ justifyContent: "center", display: "flex" }}>
-                {
-                    ResultOfTheSearch()
-                }
-            </div>
+            {
+                _searchedEvents != null && _allImages != null ? (
+                    <div style={searchedItemsContainer}>
+                        {_searchedEvents.map(e => (
+                            <div style={imageContainerStyles}>
+                                <div style={linkStyles} onClick={() => navigate(`/eventDetails/${e.id}`)}>
+                                    <div style={theatreImageStyles(_allImages, e.id)}></div>
+                                    <div style={imageTextStyles}><span>{e.name}</span></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <span style={errorTextStyles}>There is no event to display!</span>
+                )
+            }
         </div>
-    )
+    );
+
 }
 
 export default SearchResults
