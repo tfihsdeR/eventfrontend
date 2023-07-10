@@ -46,8 +46,14 @@ function ArtGaleries() {
                     d.map(innerartGaleries => (
                         <div style={imageContainerStyles}>
                             <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerartGaleries.id}`)}>
-                                <div style={theatreImageStyles(allImages, innerartGaleries.id)}></div>
-                                <div style={imageTextStyles}><span>{innerartGaleries.name}</span></div>
+                                <figure class="effect-bubba" style={{ height: "100%", width: "100%" }}>
+                                    <img src={`${allImages.find(i => i.eventId == innerartGaleries.id).imageUrl}`} style={{ width: "100%", height: "100%", borderRadius: "10px", }} />
+                                    <figcaption style={{ height: "100%", width: "100%" }}>
+                                        <h2>{innerartGaleries.name}</h2>
+                                        <p>Start Date: <span>{innerartGaleries.startDate.slice(0, 10)}</span></p>
+                                        <p>End Date: <span>{innerartGaleries.endDate.slice(0, 10)}</span></p>
+                                    </figcaption>
+                                </figure>
                             </div>
                         </div>
                     ))

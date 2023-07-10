@@ -53,13 +53,17 @@
 /* CARD STYLES */
 
 .effect-bubba {
-    background: #9e5406;
+    border-radius: 10px;
 }
 
 .effect-bubba img {
-    opacity: 0.7;
     -webkit-transition: opacity 0.35s;
     transition: opacity 0.35s;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .effect-bubba:hover img {
@@ -94,20 +98,25 @@
 }
 
 .effect-bubba h2 {
-    padding-top: 30%;
+    /* padding-top: 30%; */
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
-    -webkit-transform: translate3d(0, -20px, 0);
-    transform: translate3d(0, -20px, 0);
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+    color: white;
+    font-family: "Acakadut";
+    font-size: 35px;
 }
 
 .effect-bubba p {
-    padding: 20px 2.5em;
+    /* padding: 20px 2.5em; */
     opacity: 0;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
     -webkit-transform: translate3d(0, 20px, 0);
     transform: translate3d(0, 20px, 0);
+    font-size: 15px;
+    color: #fff;
 }
 
 .effect-bubba:hover figcaption::before,

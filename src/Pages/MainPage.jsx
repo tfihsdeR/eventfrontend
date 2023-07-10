@@ -115,22 +115,37 @@ function MainPage() {
 				<div style={eventsImagesStyles}>
 					<div style={imageContainerStyles}>
 						<Link to="/theatres" style={linkStyles}>
-							<div style={theatreImageStyles}></div>
-							<div style={imageTextStyles}><span>Theatres</span></div>
+							<figure class="effect-bubba" style={{ height: "100%", width: "100%" }}>
+								<img src={`${eventMainImages.find(e => e.title.toLowerCase() === "theatre").imageUrl}`} style={{ width: "100%", height: "100%", borderRadius: "10px", }} />
+								<figcaption style={{ height: "100%", width: "100%" }}>
+									<h2 style={{ fontSize: "50px" }}>Theatre</h2>
+									<p style={{ fontFamily: "initial", fontSize: "20px" }}>Go to the Theatres</p>
+								</figcaption>
+							</figure>
 						</Link>
 					</div>
 
 					<div style={imageContainerStyles}>
 						<Link to="/concerts" style={linkStyles}>
-							<div style={concertImageStyles}></div>
-							<div style={imageTextStyles}><span>Concerts</span></div>
+							<figure class="effect-bubba" style={{ height: "100%", width: "100%" }}>
+								<img src={`${eventMainImages.find(e => e.title.toLowerCase() === "concert").imageUrl}`} style={{ width: "100%", height: "100%", borderRadius: "10px", }} />
+								<figcaption style={{ height: "100%", width: "100%" }}>
+									<h2 style={{ fontSize: "50px" }}>Concerts</h2>
+									<p style={{ fontFamily: "initial", fontSize: "20px" }}>Go to the Concerts</p>
+								</figcaption>
+							</figure>
 						</Link>
 					</div>
 
 					<div style={imageContainerStyles}>
 						<Link to="/artGaleries" style={linkStyles}>
-							<div style={artGaleryImageStyles}></div>
-							<div style={imageTextStyles}><span>Art Galeries</span></div>
+							<figure class="effect-bubba" style={{ height: "100%", width: "100%" }}>
+								<img src={`${eventMainImages.find(e => e.title.toLowerCase() === "art galery").imageUrl}`} style={{ width: "100%", height: "100%", borderRadius: "10px" }} />
+								<figcaption style={{ height: "100%", width: "100%" }}>
+									<h2 style={{ fontSize: "50px" }}>Art Galeries</h2>
+									<p style={{ fontFamily: "initial", fontSize: "20px" }}>Go to the Art Galeries</p>
+								</figcaption>
+							</figure>
 						</Link>
 					</div>
 				</div>

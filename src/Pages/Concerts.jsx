@@ -49,8 +49,14 @@ function Concerts() {
                     d.map(innerconcerts => (
                         <div id="image" style={imageContainerStyles}>
                             <div style={linkStyles} onClick={() => navigate(`/eventDetails/${innerconcerts.id}`)}>
-                                <div style={theatreImageStyles(allImages, innerconcerts.id)}></div>
-                                <div style={imageTextStyles}><span>{innerconcerts.name}</span></div>
+                                <figure class="effect-bubba" style={{ height: "100%", width: "100%" }}>
+                                    <img src={`${allImages.find(i => i.eventId == innerconcerts.id).imageUrl}`} style={{ width: "100%", height: "100%", borderRadius: "10px", }} />
+                                    <figcaption style={{ height: "100%", width: "100%" }}>
+                                        <h2>{innerconcerts.name}</h2>
+                                        <p>Start Date: <span>{innerconcerts.startDate.slice(0, 10)}</span></p>
+                                        <p>End Date: <span>{innerconcerts.endDate.slice(0, 10)}</span></p>
+                                    </figcaption>
+                                </figure>
                             </div>
                         </div>
                     ))
