@@ -8,7 +8,7 @@ The backend project link for this frontend project: https://github.com/tfihsdeR/
 
 ## The Search Bar
 
-When you search something it is searching in event organizors and event names.
+When you search something it will be searched in event organizors and event names.
 
 You can perform a detailed search from the search page. But you should search something to reach there.
 
